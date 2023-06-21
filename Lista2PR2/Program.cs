@@ -8,229 +8,191 @@ namespace Lista2PR2
 {
     internal class Program
     {
+        static void ImprimirVet(int[] vetor, int tamanho)
+        {
+            for (int i = 0; i < tamanho; i++)
+            {
+                Console.Write(vetor[i] + " ");
+            }
+            Console.WriteLine();
+        }
+        static bool Primo(int numero)
+        {
+            if (numero < 2)
+            {
+                return false;
+            }
+
+            for (int i = 2; i <= Math.Sqrt(numero); i++)
+            {
+                if (numero % i == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
         static void Main(string[] args)
         {
-            //Exercício 1
-            //Console.Write("Digite o número de laranjas compradas: ");
-            //int laranjas_compradas = int.Parse(Console.ReadLine());
+            int opcao;
 
-            //double valor_total = 0;
-            //if (laranjas_compradas < 12)
-            //{
-            //    valor_total = laranjas_compradas * 0.35;
-            //}
-            //else
-            //{
-            //    valor_total = laranjas_compradas * 0.28;
-            //}
+            do
+            {
+                Console.WriteLine("MENU");
+                Console.WriteLine("1. Exercício 1");
+                Console.WriteLine("2. Exercício 2");
+                Console.WriteLine("3. Exercício 3");
+                Console.WriteLine("4. Exercício 4");
+                Console.WriteLine("5. Sair");
+                Console.Write("Escolha uma opção: ");
+                opcao = int.Parse(Console.ReadLine());
 
-            //Console.WriteLine("O valor total da compra é: R$ " + valor_total.ToString("F2"));
+                switch (opcao)
+                {
+                    case 1:
+                        Exercicio1();
+                        break;
+                    case 2:
+                        Exercicio2();
+                        break;
+                    case 3:
+                        Exercicio3();
+                        break;
+                    case 4:
+                        Exercicio4();
+                        break;
+                    case 5:
+                        Console.WriteLine("Saindo do programa...");
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida! Tente novamente.");
+                        break;
+                }
 
-            //Exercício 2
-            //Console.Write("Digite o ano de nascimento: ");
-            //int anoNascimento = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+            } while (opcao != 5);
+        }
 
-            //int idade = DateTime.Now.Year - anoNascimento;
+        static void Exercicio1()
+        {
+            Console.Write("Digite o tamanho do vetor: ");
+            int tamanhoVet = int.Parse(Console.ReadLine());
 
-            //if (idade >= 16)
-            //{
-            //    Console.WriteLine("Você poderá votar nas próximas eleições.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Você ainda não poderá votar nas próximas eleições.");
-            //}
+            int[] n = new int[tamanhoVet];
 
-            //Exercício 3
-            //Console.WriteLine("Digite as medidas dos lados do triângulo:");
-            //int a = int.Parse(Console.ReadLine());
-            //int b = int.Parse(Console.ReadLine());
-            //int c = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite os números do vetor (entre 1 e 1000):");
 
-            //if (a <= 0 || b <= 0 || c <= 0)
-            //{
-            //    Console.WriteLine("As medidas dos lados devem ser maiores que zero.");
-            //}
-            //else if (a + b <= c || b + c <= a || a + c <= b)
-            //{
-            //    Console.WriteLine("As medidas dos lados não formam um triângulo válido.");
-            //}
-            //else if (a == b && b == c)
-            //{
-            //    Console.WriteLine("O triângulo é equilátero.");
-            //}
-            //else if (a == b || b == c || a == c)
-            //{
-            //    Console.WriteLine("O triângulo é isósceles.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("O triângulo é escaleno.");
-            //}
+            for (int i = 0; i < tamanhoVet; i++)
+            {
+                Console.Write($"Digite o número {i + 1}: ");
+                n[i] = int.Parse(Console.ReadLine());
+            }
 
-            //Exercício 4
-            //Console.WriteLine("Digite os valores de A, B e C:");
+            Console.WriteLine("Tente adivinhar um número existente no vetor.");
 
-            //int a = int.Parse(Console.ReadLine());
-            //int b = int.Parse(Console.ReadLine());
-            //int c = int.Parse(Console.ReadLine());
+            int contador = 0;
 
-            //int delta = (b ^ 2) - (4 * a * c);
+            while (contador < tamanhoVet)
+            {
+                Console.Write("Digite um número: ");
+                int tentativa = int.Parse(Console.ReadLine());
 
-            //if (delta < 0)
-            //{
-            //    Console.WriteLine("A equação não possui raízes reais.");
-            //}
-            //else if (delta == 0)
-            //{
-            //    int x = -b / (2 * a);
-            //    Console.WriteLine("A equação possui uma raiz real: x = " + x);
-            //}
-            //else
-            //{
-            //    int x1 = (-b + (delta)) / (2 * a);
-            //    int x2 = (-b - (delta)) / (2 * a);
-            //    Console.WriteLine("A equação possui duas raízes reais: x1 = " + x1 + " e x2 = " + x2);
+                for (int i = 0; i < contador; i++)
+                {
+                    if (n[i] == tentativa)
+                    {
+                        Console.WriteLine("Parabéns! Você acertou o número.");
+                    }
+                }
+            }
+            Console.WriteLine("Executando o exercício 1...");
+        }
 
-            //Exercício 5
-            //int numero = int.Parse(Console.ReadLine());
+        static void Exercicio2()
+        {
+            int tamanhoVetor = 20000;
+            int[] n1 = new int[tamanhoVetor];
 
-            //if (numero % 3 == 0 && numero % 5 == 0)
-            //{
-            //    Console.WriteLine("O número é divisível por 3 e por 5.");
-            //}
-            //else if (numero % 3 == 0)
-            //{
-            //    Console.WriteLine("O número é divisível por 3.");
-            //}
-            //else if (numero % 5 == 0)
-            //{
-            //    Console.WriteLine("O número é divisível por 5.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("O número não é divisível por 3 ou 5.");
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                n1[i] = i + 1;
+            }
 
-            //Execício 6
-            //Console.WriteLine("Digite os três ângulos do triângulo:");
+            Console.Write("Digite um número para contar as ocorrências: ");
+            int numeroEscolhido = int.Parse(Console.ReadLine());
 
-            //int angulo1 = int.Parse(Console.ReadLine());
-            //int angulo2 = int.Parse(Console.ReadLine());
-            //int angulo3 = int.Parse(Console.ReadLine());
+            int contador1 = 0;
 
-            //int somaDosAngulos = angulo1 + angulo2 + angulo3;
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                if (n1[i] == numeroEscolhido)
+                {
+                    contador1 = contador1 + 1;
+                }
+            }
 
-            //if (somaDosAngulos != 180)
-            //{
-            //    Console.WriteLine("Os ângulos informados não formam um triângulo válido.");
-            //}
-            //else if (angulo1 == 90 || angulo2 == 90 || angulo3 == 90)
-            //{
-            //    Console.WriteLine("O triângulo é retângulo.");
-            //}
-            //else if (angulo1 > 90 || angulo2 > 90 || angulo3 > 90)
-            //{
-            //    Console.WriteLine("O triângulo é obtusângulo.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("O triângulo é acutângulo.");
-            //}
+            Console.WriteLine("O número ", numeroEscolhido, " aparece ", contador1, " vezes no vetor.");
 
-            //Exercício 7
-            //Console.WriteLine("Digite três valores inteiro");
 
-            //int a = int.Parse(Console.ReadLine());
-            //int b = int.Parse(Console.ReadLine());
-            //int c = int.Parse(Console.ReadLine());
+            Console.WriteLine("Executando o exercício 2...");
+        }
 
-            //if (a < b && a < c)
-            //{
+        static void Exercicio3()
+        {
+            int[] vetor = new int[10];
+            int[] vetorResultante = new int[10];
+            int tamanhoVetor = vetor.GetLength(0);
 
-            //    if (b < c)
-            //    {
-            //        Console.WriteLine(a + "," + b + "," + c);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine(a + ", " + c + ", " + b);
-            //    }
-            //}
-            //else if (b < a && b < c)
-            //{
-            //    if (a < c)
-            //    {
-            //        Console.WriteLine(b + ", " + a + ", " + c);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine(b + ", " + c + ", " + a);
-            //    }
-            //}
-            //else
-            //{
-            //    if (a < b)
-            //    {
-            //        Console.WriteLine(c + ", " + a + ", " + b);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine(c + ", " + b + ", " + a);
-            //    }
-            //}
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                Console.Write("Digite um número inteiro e positivo: ");
+                vetor[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    vetorResultante[i] = vetor[i] / 2;
+                }
+                else
+                {
+                    vetorResultante[i] = vetor[i] * 3;
+                }
+            }
+            Console.WriteLine("Vetor original:");
+            ImprimirVet(vetor, tamanhoVetor);
 
-            //Exercício 8
-            //Console.Write("Informe um ano: ");
-            //int ano = int.Parse(Console.ReadLine());
+            Console.WriteLine("Vetor resultante:");
+            ImprimirVet(vetorResultante, tamanhoVetor);
 
-            //if ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0)
-            //{
-            //    Console.WriteLine("O ano informado é bissexto.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("O ano informado não é bissexto.");
-            //}
+            Console.WriteLine("Executando o exercício 3...");
+        }
+        static void Exercicio4()
+        {
+            int tamanhoVetor = 5000;
+            int[] vetor = new int[tamanhoVetor];
 
-            //Exercício 9
-            //Console.Write("Digite o primeiro número: ");
-            //float num1 = float.Parse(Console.ReadLine());
-            //Console.Write("Digite o segundo número: ");
-            //float num2 = float.Parse(Console.ReadLine());
+            // Ler os números e armazená-los no vetor
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                Console.Write("Digite o número {0}: ", i + 1);
+                vetor[i] = int.Parse(Console.ReadLine());
+            }
 
-            //Console.Write("Digite a operação (+, -, *, /): ");
-            //string operacaoStr = Console.ReadLine();
-            //float resultado;
-            //if (operacaoStr == "+")
-            //{
-            //    resultado = num1 + num2;
-            //}
-            //else if (operacaoStr == "-")
-            //{
-            //    resultado = num1 - num2;
-            //}
-            //else if (operacaoStr == "*")
-            //{
-            //    resultado = num1 * num2;
-            //}
-            //else if (operacaoStr == "/")
-            //{
-            //    resultado = num1 / num2;
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Operação inválida.");
-            //    return;
-            //}
+            Console.WriteLine("Números primos encontrados:");
 
-            //Console.WriteLine("Resultado: " + resultado);
+            // Verificar quais números do vetor são primos
+            for (int i = 0; i < tamanhoVetor; i++)
+            {
+                if (Primo(vetor[i]))
+                {
+                    Console.WriteLine(vetor[i]);
+                }
+            }
 
-            // exercício 10
-            //Na linguagem C#, a geração de números aleatórios é realizada através da classe Random, que oferece métodos para gerar números inteiros e reais de maneira aleatória.
-
-            //Exemplo
-            //Random rand = new Random();
-            //int numeroAleatorio = rand.Next(1, 101);
+            Console.WriteLine("Executando o exercício 4...");
         }
     }
 }
+        
